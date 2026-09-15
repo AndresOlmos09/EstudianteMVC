@@ -62,6 +62,10 @@ public class EstudianteView extends JFrame {
         btnBuscar.setForeground(Color.WHITE);
         btnBuscar.setFocusPainted(false);
         
+        // Panel superior — barra de agregar estudiante
+        JPanel panelAgregar = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        panelAgregar.setBorder(BorderFactory.createTitledBorder("Agregar Estudiante"));
+        
         //Inicializando Boton Agregar
         btnAgregar= new JButton("Agregar");
         btnAgregar.setBackground(new Color(46,204,113));
