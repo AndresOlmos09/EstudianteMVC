@@ -24,7 +24,7 @@ public class EstudianteView extends JFrame {
     private JButton                btnBuscar;
     private JTable                 tblResultados;
     private DefaultTableModel      modeloTabla;
-    private JLabel                 lblEstado;
+    private JLabel                 lblEstado;//label son textos
 
     // ── Controlador ───────────────────────────────────────────────────────────
     private EstudianteController controlador;
@@ -32,8 +32,8 @@ public class EstudianteView extends JFrame {
     // ── Constructor ───────────────────────────────────────────────────────────
 
     public EstudianteView() {
-        initComponentes();
-        initEventos();
+        initComponentes();//inicializar componentes(crear cada elemento de mi pantalla y agregarselos a la caja grande)
+        initEventos();//inicializar eventos(acciones o respuestas de cada elemento visual que tengo en mi pantalla)
     }
 
     // ── Inicialización de componentes ─────────────────────────────────────────
