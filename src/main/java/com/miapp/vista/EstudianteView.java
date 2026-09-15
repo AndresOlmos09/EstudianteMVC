@@ -25,7 +25,13 @@ public class EstudianteView extends JFrame {
     private JTable                 tblResultados;
     private DefaultTableModel      modeloTabla;
     private JLabel                 lblEstado;//label son textos
-
+    
+    //Crenando nuevos componentes de registrar estudiante
+    private JTextField             txtNombre2;
+    private JTextField             txtNombre3;
+    private JTextField             txtNombre4;
+    private JButton                btnAgregar;
+    
     // ── Controlador ───────────────────────────────────────────────────────────
     private EstudianteController controlador;
 
@@ -48,13 +54,19 @@ public class EstudianteView extends JFrame {
         // Panel superior — barra de búsqueda
         JPanel panelBusqueda = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
         panelBusqueda.setBorder(BorderFactory.createTitledBorder("Buscar estudiante"));
-
+        
         JLabel lblNombre = new JLabel("Nombre:");
         txtNombre = new JTextField(25);
         btnBuscar = new JButton("Buscar");
         btnBuscar.setBackground(new Color(59, 139, 212));
         btnBuscar.setForeground(Color.WHITE);
         btnBuscar.setFocusPainted(false);
+        
+        //Inicializando Boton Agregar
+        btnAgregar= new JButton("Agregar");
+        btnAgregar.setBackground(new Color(46,204,113));
+        btnAgregar.setForeground(Color.WHITE);
+        btnAgregar.setFocusPainted(false);
 
         panelBusqueda.add(lblNombre);
         panelBusqueda.add(txtNombre);
@@ -87,6 +99,8 @@ public class EstudianteView extends JFrame {
     // ── Eventos ───────────────────────────────────────────────────────────────
 
     private void initEventos() {
+        
+                
         btnBuscar.addActionListener((ActionEvent e) -> {
             if (controlador != null) {
                 controlador.buscarEstudiante(txtNombre.getText().trim());
