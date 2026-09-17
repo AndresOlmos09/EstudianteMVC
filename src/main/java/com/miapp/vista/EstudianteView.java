@@ -26,12 +26,7 @@ public class EstudianteView extends JFrame {
     private DefaultTableModel      modeloTabla;
     private JLabel                 lblEstado;//label son textos
     
-    //Crenando nuevos componentes de registrar estudiante
-    private JTextField             nombre;
-    private JTextField             carrera;
-    private JTextField             promedio;
-    private JButton                btnAgregar;
-    
+   
     // ── Controlador ───────────────────────────────────────────────────────────
     private EstudianteController controlador;
 
@@ -62,23 +57,14 @@ public class EstudianteView extends JFrame {
         btnBuscar.setForeground(Color.WHITE);
         btnBuscar.setFocusPainted(false);
         
-        // Panel superior — barra de agregar estudiante
-        JPanel panelAgregar = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
-        panelAgregar.setBorder(BorderFactory.createTitledBorder("Agregar Estudiante"));
         
-        txtNombre1 = new JtextField(25)
         
-        //Inicializando Boton Agregar
-        btnAgregar= new JButton("Agregar");
-        btnAgregar.setBackground(new Color(46,204,113));
-        btnAgregar.setForeground(Color.WHITE);
-        btnAgregar.setFocusPainted(false);
-
+        
         panelBusqueda.add(lblNombre);
         panelBusqueda.add(txtNombre);
         panelBusqueda.add(btnBuscar);
         
-        panelAgregar.add(txtNombre);
+       
         
         
         // Panel central — tabla de resultados
