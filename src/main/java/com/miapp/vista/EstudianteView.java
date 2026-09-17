@@ -46,28 +46,38 @@ public class EstudianteView extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
 
-        // Panel superior — barra de búsqueda
+        // Panel Busqueda de estudiante
         JPanel panelBusqueda = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
         panelBusqueda.setBorder(BorderFactory.createTitledBorder("Buscar estudiante"));
-        
         JLabel lblNombre = new JLabel("Nombre:");
         txtNombre = new JTextField(25);
         btnBuscar = new JButton("Buscar");
         btnBuscar.setBackground(new Color(59, 139, 212));
         btnBuscar.setForeground(Color.WHITE);
         btnBuscar.setFocusPainted(false);
-        
-        
-        
-        
         panelBusqueda.add(lblNombre);
         panelBusqueda.add(txtNombre);
         panelBusqueda.add(btnBuscar);
         
+        //Panel de Agregar Estudiante
+        JPanel panelAgregar = new JPanel (new FlowLayout(FlowLayout.LEFT, 10, 10));
+        panelAgregar.setBorder(BorderFactory.createTitledBorder("Agregar Estudiante"));
+        
+        
+        
+        
+        
+        //Panel superior (Buscar estudiante y agregar estudiante)
+        JPanel panelSuperior = new JPanel();
+        panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.Y_AXIS));
+        panelSuperior.add(panelBusqueda);
+        panelSuperior.add(panelAgregar);
+        
+        
+        
        
-        
-        
-        // Panel central — tabla de resultados
+       
+        // Panel central — tabla  de resultados
         String[] columnas = {"ID", "Nombre", "Carrera", "Promedio"};
         modeloTabla = new DefaultTableModel(columnas, 0) {
             @Override
@@ -86,7 +96,8 @@ public class EstudianteView extends JFrame {
         lblEstado.setBorder(BorderFactory.createEmptyBorder(4, 10, 4, 10));
         lblEstado.setForeground(Color.GRAY);
 
-        add(panelBusqueda, BorderLayout.NORTH);
+        
+        add(panelSuperior, BorderLayout.NORTH);
         add(scroll,        BorderLayout.CENTER);
         add(lblEstado,     BorderLayout.SOUTH);
     }
