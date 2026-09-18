@@ -25,6 +25,7 @@ public class EstudianteView extends JFrame {
     private JTable                 tblResultados;
     private DefaultTableModel      modeloTabla;
     private JLabel                 lblEstado;//label son textos
+    private JButton                btnMostrarTodos;
     //-
     private JTextField             nombreAgregar;
     private JTextField             carreraAgregar;
@@ -62,9 +63,12 @@ public class EstudianteView extends JFrame {
         btnBuscar.setBackground(new Color(59, 139, 212));
         btnBuscar.setForeground(Color.WHITE);
         btnBuscar.setFocusPainted(false);
+        btnMostrarTodos = new JButton("Mostrar Todos");
+        
         panelBusqueda.add(lblNombre);
         panelBusqueda.add(txtNombre);
         panelBusqueda.add(btnBuscar);
+        panelBusqueda.add(btnMostrarTodos);
         
         //Panel de Agregar Estudiante
         JPanel panelAgregar = new JPanel (new FlowLayout(FlowLayout.LEFT, 10, 10));
@@ -134,6 +138,14 @@ public class EstudianteView extends JFrame {
     // ── Eventos ───────────────────────────────────────────────────────────────
 
     private void initEventos() {
+        
+        btnMostrarTodos.addActionListener((ActionEvent e) -> {
+
+        if (controlador != null) {
+        controlador.mostrarTodos();
+        }
+
+        });
         
         btnOrdenar.addActionListener((ActionEvent e) -> {
             

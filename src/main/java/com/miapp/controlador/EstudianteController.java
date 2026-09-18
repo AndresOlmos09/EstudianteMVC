@@ -141,6 +141,15 @@ public class EstudianteController {
         vista.mostrarEstudiantes(convertirAFilas(estudiantes));
     }
     
+    
+    public void mostrarTodos() {
+
+    // Guardar todos los estudiantes como últimos resultados
+    ultimosResultados = new ArrayList<>(estudiantes);
+
+    // Mostrar todos los estudiantes en la tabla
+    vista.mostrarEstudiantes(convertirAFilas(ultimosResultados));
+    }
     public void ordenarPor(String criterio) {
 
     // Verificar si hay resultados para ordenar
