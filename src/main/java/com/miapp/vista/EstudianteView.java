@@ -30,7 +30,10 @@ public class EstudianteView extends JFrame {
     private JTextField             carreraAgregar;
     private JTextField             promedioAgregar;
     private JButton                btnAgregar;
-  
+    //-
+    private JComboBox<String> comboOrdenar;
+    private JButton btnOrdenar;
+    
     // ── Controlador ───────────────────────────────────────────────────────────
     private EstudianteController controlador;
 
@@ -46,7 +49,7 @@ public class EstudianteView extends JFrame {
     private void initComponentes() {
         setTitle("Búsqueda de Estudiantes — MVC NetBeans");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(700, 450);
+        setSize(800, 450);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
 
@@ -84,15 +87,25 @@ public class EstudianteView extends JFrame {
         panelAgregar.add(promedioAgregar);
         panelAgregar.add(btnAgregar);
         
+        //Panel de Ordenar Estudiantes
+        JPanel panelOrdenar = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        panelOrdenar.setBorder(
+            BorderFactory.createTitledBorder("Ordenar estudiantes")
+        );
+        JLabel lblOrdenar = new JLabel("Ordenar por:");
+        comboOrdenar = new JComboBox<>(new String[]{"Nombre", "Promedio"});
+        btnOrdenar = new JButton("Ordenar");
+        panelOrdenar.add(lblOrdenar);
+        panelOrdenar.add(comboOrdenar);
+        panelOrdenar.add(btnOrdenar);
+        
         //Panel superior (Buscar estudiante y agregar estudiante)
         JPanel panelSuperior = new JPanel();
         panelSuperior.setLayout(new BoxLayout(panelSuperior, BoxLayout.Y_AXIS));
         panelSuperior.add(panelBusqueda);
         panelSuperior.add(panelAgregar);
+        panelSuperior.add(panelOrdenar);
         
-        
-        
-       
        
         // Panel central — tabla  de resultados
         String[] columnas = {"ID", "Nombre", "Carrera", "Promedio"};
@@ -104,7 +117,6 @@ public class EstudianteView extends JFrame {
         tblResultados.setRowHeight(24);
         tblResultados.getTableHeader().setReorderingAllowed(false);
         tblResultados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
         JScrollPane scroll = new JScrollPane(tblResultados);
         scroll.setBorder(BorderFactory.createTitledBorder("Resultados"));
 
@@ -123,16 +135,43 @@ public class EstudianteView extends JFrame {
 
     private void initEventos() {
         
+        btnOrdenar.addActionListener((ActionEvent e) -> {
+            
+        if (controlador != null) {
+        String criterio = (String) comboOrdenar.getSelectedItem();
+        controlador.ordenarPor(criterio);
+        }
+        });
+        
                 
         btnBuscar.addActionListener((ActionEvent e) -> {
             if (controlador != null) {
                 controlador.buscarEstudiante(txtNombre.getText().trim());
             }
         });
+        
+        btnAgregar.addActionListener((ActionEvent e) -> {
+
+            if (controlador != null) {
+                String nombre = nombreAgregar.getText().trim();
+                String carrera = carreraAgregar.getText().trim();
+
+            try {
+                double promedio = Double.parseDouble(promedioAgregar.getText().trim());
+                controlador.agregarEstudiante(nombre, carrera, promedio);
+            } 
+            catch (NumberFormatException ex) {
+
+            mostrarError("El promedio debe ser un número válido.");
+
+            }
+            }
+        });
 
         // También buscar al presionar Enter en el campo de texto
         txtNombre.addActionListener((ActionEvent e) -> btnBuscar.doClick());
     }
+        
 
     // ── Métodos públicos que llama el Controlador ─────────────────────────────
     // ninguno de estos métodos recibe un Estudiante: reciben
@@ -172,7 +211,12 @@ public class EstudianteView extends JFrame {
         JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
         setEstado("Error: " + mensaje);
     }
-
+    
+    public void mostrarConfirmacion(String mensaje) {
+    JOptionPane.showMessageDialog(this, mensaje, "Éxito", JOptionPane.INFORMATION_MESSAGE);
+    setEstado(mensaje);
+    }
+    
     /**
      * Devuelve el texto ingresado en el campo de nombre.
      */
