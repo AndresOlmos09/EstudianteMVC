@@ -25,8 +25,12 @@ public class EstudianteView extends JFrame {
     private JTable                 tblResultados;
     private DefaultTableModel      modeloTabla;
     private JLabel                 lblEstado;//label son textos
-    
-   
+    //-
+    private JTextField             nombreAgregar;
+    private JTextField             carreraAgregar;
+    private JTextField             promedioAgregar;
+    private JButton                btnAgregar;
+  
     // ── Controlador ───────────────────────────────────────────────────────────
     private EstudianteController controlador;
 
@@ -62,10 +66,23 @@ public class EstudianteView extends JFrame {
         //Panel de Agregar Estudiante
         JPanel panelAgregar = new JPanel (new FlowLayout(FlowLayout.LEFT, 10, 10));
         panelAgregar.setBorder(BorderFactory.createTitledBorder("Agregar Estudiante"));
-        
-        
-        
-        
+        JLabel lblNombreAgregar = new JLabel("Nombre:");
+        nombreAgregar = new JTextField(25);  
+        JLabel lblCarrera = new JLabel("Carrera:");
+        carreraAgregar = new JTextField(10);
+        JLabel lblPromedio = new JLabel("Promedio:");
+        promedioAgregar = new JTextField(5);
+        btnAgregar = new JButton("Agregar");
+        btnAgregar.setBackground(new Color(40, 167, 69));
+        btnAgregar.setForeground(Color.WHITE);
+        btnAgregar.setFocusPainted(false);
+        panelAgregar.add(lblNombreAgregar);
+        panelAgregar.add(nombreAgregar);
+        panelAgregar.add(lblCarrera);
+        panelAgregar.add(carreraAgregar);
+        panelAgregar.add(lblPromedio);
+        panelAgregar.add(promedioAgregar);
+        panelAgregar.add(btnAgregar);
         
         //Panel superior (Buscar estudiante y agregar estudiante)
         JPanel panelSuperior = new JPanel();
@@ -97,7 +114,7 @@ public class EstudianteView extends JFrame {
         lblEstado.setForeground(Color.GRAY);
 
         
-        add(panelSuperior, BorderLayout.NORTH);
+        add(panelSuperior,   BorderLayout.NORTH);
         add(scroll,        BorderLayout.CENTER);
         add(lblEstado,     BorderLayout.SOUTH);
     }
